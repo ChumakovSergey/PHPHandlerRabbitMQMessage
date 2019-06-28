@@ -56,7 +56,7 @@ class RabbitMQMessage
                     } else {
                         $requeue = true;
                         if (isset($this->errorCallbackFunc)) {
-                            $callback = (string)$this->errorCallbackFunc;
+                            $callback = $this->errorCallbackFunc;
                             $res = $callback($msg->body, $msg->get('correlation_id'), $this->correlation_id);
                             if($res)
                                 $msg->delivery_info['channel']->basic_ack($msg->delivery_info['delivery_tag']);
